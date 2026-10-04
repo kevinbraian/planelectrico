@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "id": "aea-770",
+    "norma": "AEA 90364-7-770",
+    "edicion": "2017",
+    "alcance": "Viviendas unifamiliares hasta 63 A (clasificaciones BA2 y BD1)",
+    "datosAl": "2026-10-04",
+    "nota": "Valores transcriptos a mano de la norma para uso propio. Cada bloque indica cláusula, tabla y página impresa (en el archivo PDF hay que sumar 8). 'verificado' es true solo cuando una persona contrastó el bloque contra el documento; '_control' deja constancia de los controles automáticos."
+  },
+
+  "alimentacion": {
+    "ref": { "clausula": "770.4.2", "pagina": 8 },
+    "verificado": false,
+    "_control": "Agregado el 2026-10-04 a partir del texto extraído del PDF. La Tabla 770-B.I (p.65) calcula Ib = DPMS / 220.",
+    "tensionFaseNeutroV": 220,
+    "tensionLineaV": 380,
+    "frecuenciaHz": 50,
+    "corrienteMaxOrigenA": 63
+  },
+
+  "superficieComputable": {
+    "ref": { "clausula": "770.7.3", "pagina": 14 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "_regla": "cubierta + 50% de la semicubierta",
+    "factorCubierta": 1,
+    "factorSemicubierta": 0.5
+  },
+
+  "gradosElectrificacion": {
+    "ref": { "clausula": "770.7.3", "tabla": "770.7.I", "pagina": 14 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "_regla": "m2Min exclusivo, m2Max inclusivo (ej. 'más de 60 hasta 130')",
+    "items": [
+      { "id": "minimo",   "nombre": "Mínimo",   "m2Min": 0,   "m2Max": 60 },
+      { "id": "medio",    "nombre": "Medio",    "m2Min": 60,  "m2Max": 130 },
+      { "id": "elevado",  "nombre": "Elevado",  "m2Min": 130, "m2Max": 200 },
+      { "id": "superior", "nombre": "Superior", "m2Min": 200, "m2Max": null }
+    ]
+  },
+
+  "circuitosMinimos": {
+    "ref": { "clausula": "770.7.4", "tabla": "770.7.II", "pagina": 15 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "porGrado": {
+      "minimo":   { "total": 2, "variantes": [ { "id": "unica", "IUG": 1, "TUG": 1, "libre": 0 } ] },
+      "medio":    { "total": 3, "variantes": [ { "id": "a", "IUG": 2, "TUG": 1, "libre": 0 }, { "id": "b", "IUG": 1, "TUG": 2, "libre": 0 } ] },
+      "elevado":  { "total": 5, "variantes": [ { "id": "a", "IUG": 2, "TUG": 3, "libre": 0 }, { "id": "b", "IUG": 3, "TUG": 2, "libre": 0 } ] },
+      "superior": { "total": 6, "variantes": [ { "id": "a", "IUG": 2, "TUG": 3, "libre": 1 }, { "id": "b", "IUG": 3, "TUG": 2, "libre": 1 } ] }
+    }
+  },
+
+  "tiposCircuito": {
+    "ref": { "clausula": "770.6.6", "tabla": "770.6.I", "pagina": 11 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "proteccion": "bipolar (ambos polos)",
+    "tipos": {
+      "IUG": { "nombre": "Iluminación uso general",    "maxBocas": 15, "maxProteccionA": 16, "cargaUnitariaMaxA": 10, "tomaTipo": "2P+T 10 A" },
+      "TUG": { "nombre": "Tomacorriente uso general",  "maxBocas": 15, "maxProteccionA": 20, "cargaUnitariaMaxA": 10, "tomaTipo": "2P+T 10 A" },
+      "TUE": { "nombre": "Tomacorriente uso especial", "maxBocas": 15, "maxProteccionA": 32, "cargaUnitariaMaxA": 20, "tomaTipo": "2P+T 20 A (o IEC 60309 hasta 16 A)" },
+      "ESPECIFICO": { "nombre": "Uso específico", "nota": "Fuera de la 770: consultar AEA 90364-7-771. Responsabilidad del proyectista." }
+    }
+  },
+
+  "conteoBocas": {
+    "ref": { "clausula": "770.6.6", "pagina": 10 },
+    "verificado": false,
+    "_control": "Agregado el 2026-10-04 a partir del texto extraído del PDF.",
+    "_nota": "Nota 1 de 770.6.6: no son bocas las cajas de paso o derivación ni las que solo contienen elementos de maniobra o protección.",
+    "tomasMaxPorCaja": {
+      "ref": { "clausula": "770.7.1 a)", "pagina": 11 },
+      "rectangular": 2,
+      "cuadrada": 4
+    },
+    "tomasEnTableroPorBoca": {
+      "ref": { "clausula": "770.7.2", "pagina": 13 },
+      "valor": 4
+    }
+  },
+
+  "pmu": {
+    "ref": { "clausula": "770.7.5", "tabla": "770.7.III", "pagina": 16 },
+    "verificado": true,
+    "_control": "Verificada visualmente contra el PDF por quien la transcribió. Las filas con 'verificado: false' se agregaron después.",
+    "_formato": "Cada fila tiene 'todos' (vale para cualquier grado) y/o 'porGrado'. Cada celda es { fijo?, porM2?, porMetroLineal?, minimo?, modulos?, soloSiLargoMayorA? } o null si no se exige. 'porM2: 18' = una boca cada 18 m² o fracción. 'modulos' = módulos de tomacorriente para electrodomésticos fijos, que pueden compartir boca.",
+    "_nota1": "Viviendas < 130 m² se asumen sin dormitorios > 36 m²; si los hay, usar los PMU de 'elevado' (ver 'siGradoNoAplica').",
+    "_nota2": "Lofts: grado según superficie total.",
+    "usos": {
+      "dormitorio": { "nombre": "Dormitorio" }
+    },
+    "ambientes": {
+      "sala_estar": {
+        "nombre": "Sala de estar, comedor, comedor diario, escritorio, estudio, biblioteca o similares",
+        "nombreCorto": "Sala de estar / comedor",
+        "todos": { "IUG": { "porM2": 18, "minimo": 1 }, "TUG": { "porM2": 6, "minimo": 2 } }
+      },
+      "dormitorio_menor_10": {
+        "nombre": "Dormitorio (< 10 m²)",
+        "uso": "dormitorio",
+        "m2": { "max": 10, "maxInclusivo": false },
+        "todos": { "IUG": { "fijo": 1 }, "TUG": { "fijo": 2 } }
+      },
+      "dormitorio_10_a_36": {
+        "nombre": "Dormitorio (≥ 10 m² hasta 36 m²)",
+        "uso": "dormitorio",
+        "m2": { "min": 10, "minInclusivo": true, "max": 36, "maxInclusivo": true },
+        "todos": { "IUG": { "fijo": 1 }, "TUG": { "fijo": 3 } }
+      },
+      "dormitorio_mayor_36": {
+        "nombre": "Dormitorio (> 36 m²)",
+        "uso": "dormitorio",
+        "m2": { "min": 36, "minInclusivo": false },
+        "gradosAplicables": ["elevado", "superior"],
+        "siGradoNoAplica": "elevado",
+        "todos": { "IUG": { "fijo": 2 }, "TUG": { "fijo": 3 } }
+      },
+      "cocina": {
+        "nombre": "Cocina",
+        "_nota": "Ver 770.7.1 i) para la lista de electrodomésticos de ubicación fija.",
+        "porGrado": {
+          "minimo":   { "IUG": { "fijo": 1 }, "TUG": { "fijo": 3, "modulos": 2 } },
+          "medio":    { "IUG": { "fijo": 2 }, "TUG": { "fijo": 3, "modulos": 2 } },
+          "elevado":  { "IUG": { "fijo": 2 }, "TUG": { "fijo": 3, "modulos": 3 } },
+          "superior": { "IUG": { "fijo": 2 }, "TUG": { "fijo": 4, "modulos": 3 } }
+        }
+      },
+      "bano": {
+        "nombre": "Baño (para toilette ver 770.7.1 k)",
+        "nombreCorto": "Baño",
+        "todos": { "IUG": { "fijo": 1 }, "TUG": { "fijo": 1 } }
+      },
+      "toilette": {
+        "nombre": "Toilette (baño sin bañera ni ducha)",
+        "nombreCorto": "Toilette",
+        "ref": { "clausula": "770.7.1 k)", "pagina": 12 },
+        "verificado": false,
+        "_control": "Agregado el 2026-10-04 a partir del texto extraído del PDF.",
+        "comoFila": "bano",
+        "tomaPuedeIrEnIluminacion": true
+      },
+      "vestibulo_garaje_hall": {
+        "nombre": "Vestíbulo, garaje, hall, vestidor o similares",
+        "nombreCorto": "Vestíbulo / garaje / hall",
+        "porGrado": {
+          "minimo":   { "IUG": { "fijo": 1 }, "TUG": { "fijo": 1 } },
+          "medio":    { "IUG": { "porM2": 12, "minimo": 1 }, "TUG": { "porM2": 12, "minimo": 1 } },
+          "elevado":  { "IUG": { "porM2": 12, "minimo": 1 }, "TUG": { "porM2": 12, "minimo": 1 } },
+          "superior": { "IUG": { "porM2": 12, "minimo": 1 }, "TUG": { "porM2": 12, "minimo": 1 } }
+        }
+      },
+      "pasillo_cubierto": {
+        "nombre": "Pasillos cubiertos",
+        "nombreCorto": "Pasillo cubierto",
+        "todos": { "IUG": { "porMetroLineal": 5, "minimo": 1 } },
+        "porGrado": {
+          "minimo":   { "TUG": null },
+          "medio":    { "TUG": { "porMetroLineal": 5, "soloSiLargoMayorA": 2 } },
+          "elevado":  { "TUG": { "porMetroLineal": 5, "soloSiLargoMayorA": 2 } },
+          "superior": { "TUG": { "porMetroLineal": 5, "soloSiLargoMayorA": 2 } }
+        }
+      },
+      "lavadero": {
+        "nombre": "Lavadero",
+        "todos": { "IUG": { "fijo": 1 } },
+        "porGrado": {
+          "minimo":   { "TUG": { "fijo": 1 } },
+          "medio":    { "TUG": { "fijo": 2 } },
+          "elevado":  { "TUG": { "fijo": 2 } },
+          "superior": { "TUG": { "fijo": 2 } }
+        }
+      },
+      "balcon_galeria_semicubierto": {
+        "nombre": "Balcones, galerías, atrios o similares, espacios semicubiertos y pasillos descubiertos",
+        "nombreCorto": "Balcón / galería / semicubierto",
+        "cerramientoPorDefecto": "semicubierto",
+        "todos": { "IUG": { "porMetroLineal": 5 }, "TUG": null }
+      },
+      "escalera_rampa": {
+        "nombre": "Escaleras y rampas",
+        "nombreCorto": "Escalera / rampa",
+        "ref": { "clausula": "770.7.1 d)", "pagina": 12 },
+        "verificado": false,
+        "_control": "Agregado el 2026-10-04 a partir del texto extraído del PDF.",
+        "nota": "La norma admite como alternativa una boca en cada descanso.",
+        "todos": { "IUG": { "porMetroLineal": 5 }, "TUG": null }
+      },
+      "kitchinette": {
+        "nombre": "Kitchinette",
+        "ref": { "clausula": "770.7.1 o)", "pagina": 13 },
+        "verificado": false,
+        "_control": "Agregado el 2026-10-04 a partir del texto extraído del PDF.",
+        "nota": "Se suma a los puntos mínimos del ambiente donde está ubicada.",
+        "_nota": "El módulo es el tomacorriente para artefactos de ubicación fija.",
+        "todos": { "IUG": { "fijo": 1 }, "TUG": { "fijo": 2, "modulos": 1 } }
+      }
+    }
+  },
+
+  "demanda": {
+    "ref": { "clausula": "770.8.1", "tabla": "770.8.I", "pagina": 17 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "_nota": "Son valores MÍNIMOS. Si los consumos reales conocidos superan el mínimo, se usan los mayores.",
+    "dpmsMinimaPorCircuito": {
+      "IUG_sin_tomas": { "VAporBoca": 60, "factor": [2, 3] },
+      "IUG_con_tomas": { "VA": 2200 },
+      "TUG":           { "VA": 2200 },
+      "TUE":           { "VA": 3300 }
+    },
+    "coeficienteSimultaneidad": {
+      "ref": { "clausula": "770.8.1", "tabla": "770.8.II", "pagina": 17 },
+      "_clave": "cantidad mínima de circuitos del grado de electrificación",
+      "porCantidadMinimaDeCircuitos": { "2": 1.0, "3": 0.8, "5": 0.7, "6": 0.6 }
+    },
+    "cargaTotal": "DPMS (con coeficiente) + circuitos de uso específico (770.8.2, 770.8.3)"
+  },
+
+  "conductores": {
+    "ref": { "clausula": "770.11", "tabla": "770.11.I", "pagina": 36 },
+    "verificado": false,
+    "_control": "Los valores coinciden con el texto extraído del PDF (2026-10-04). 'linea_principal' y 'circuito_seccional' se agregaron ese día.",
+    "_nota": "Circuitos de control que no transmiten potencia (ej. domótica): mínimo 0,5 mm².",
+    "_ojo": "Retornos de interruptor: la norma dice 1,0 mm², no 1,5 como decía el resumen de Gemini.",
+    "seccionMinimaMm2": {
+      "linea_principal": 4.0,
+      "circuito_seccional": 2.5,
+      "IUG": 1.5,
+      "IUG_con_tomas_derivados": 2.5,
+      "TUG": 2.5,
+      "TUE": 2.5,
+      "especifico": 2.5,
+      "especifico_alimentacion_MBTF": 1.5,
+      "alimentacion_interruptores_efecto": 1.0,
+      "retorno_interruptores_efecto": 1.0,
+      "PE": 2.5
+    }
+  },
+
+  "ampacidad": {
+    "ref": { "clausula": "770.12.2.2", "tabla": "770.12.I", "pagina": 38 },
+    "verificado": false,
+    "_control": "Coincide con el texto extraído del PDF (2026-10-04).",
+    "_nota": "Cables IRAM NM 247-3 / IRAM 62267, temperatura ambiente de cálculo 40 °C. 2x = 2 cargados + PE (monofásico). 3x = 3 cargados + N + PE.",
+    "metodos": {
+      "embutida_B1": {
+        "nombre": "Cañería embutida en pared (método B1)",
+        "2x": { "1.0": 11, "1.5": 15, "2.5": 21, "4": 28, "6": 36, "10": 50, "16": 66, "25": 88 },
+        "3x": { "1.0": 10, "1.5": 14, "2.5": 18, "4": 25, "6": 32, "10": 44, "16": 59, "25": 77 }
+      }
+    },
+    "agrupamiento": {
+      "ref": { "clausula": "770.12.2.2", "tabla": "770.12.II", "pagina": 39 },
+      "_nota": "PE no cuenta como cable cargado.",
+      "monofasicos": { "2": 0.8, "3": 0.7 }
+    },
+    "_otrosMetodos": "Tabla 770.12.III (p.40) trae caño a la vista (B2) y enterrados (D1, D2). No cargado todavía."
+  },
+
+  "proteccion": {
+    "ref": { "clausula": "770.15.2.1", "pagina": 47 },
+    "verificado": false,
+    "_control": "La condición Ib <= In <= Iz coincide con el texto extraído del PDF (2026-10-04).",
+    "_regla": "Ib <= In <= Iz y In <= maxProteccionA del tipo de circuito. Los calibres comerciales son una lista de convención, no de la norma.",
+    "diferencial": {
+      "ref": { "clausula": "770.14.2.3", "pagina": 43 },
+      "sensibilidadMaMax": 30,
+      "nota": "Complementaria contra contacto directo; ver 770.15 para ubicación y coordinación."
+    },
+    "calibresPIAcomerciales": [6, 10, 16, 20, 25, 32, 40, 50, 63]
+  }
+}

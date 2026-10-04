@@ -1,0 +1,49 @@
+{
+  "_nota": "Potencias ORIENTATIVAS de aparatos comunes, para tener un punto de partida. No son valores normativos ni de ningún fabricante: lo que vale es la chapa de cada aparato. 'horasDia' es el uso diario estimado a potencia plena (una heladera funciona todo el día, pero su motor marcha solo una parte).",
+  "artefactos": [
+    { "id": "led-9", "nombre": "Lámpara LED 9 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 9, "unidad": "W" }, "horasDia": 5 },
+    { "id": "led-12", "nombre": "Lámpara LED 12 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 12, "unidad": "W" }, "horasDia": 5 },
+    { "id": "dicroica-led", "nombre": "Dicroica LED 7 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 7, "unidad": "W" }, "horasDia": 4 },
+    { "id": "tubo-led", "nombre": "Tubo LED 18 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 18, "unidad": "W" }, "horasDia": 5 },
+    { "id": "panel-led", "nombre": "Panel o plafón LED 24 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 24, "unidad": "W" }, "horasDia": 5 },
+    { "id": "reflector-led", "nombre": "Reflector LED 50 W", "categoria": "Iluminación", "tipo": "luminaria", "potencia": { "valor": 50, "unidad": "W" }, "horasDia": 6 },
+
+    { "id": "heladera", "nombre": "Heladera con freezer", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 150, "unidad": "W", "fp": 0.8 }, "horasDia": 8 },
+    { "id": "freezer", "nombre": "Freezer", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 180, "unidad": "W", "fp": 0.8 }, "horasDia": 8 },
+    { "id": "microondas", "nombre": "Microondas", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 1200, "unidad": "W" }, "horasDia": 0.3 },
+    { "id": "pava", "nombre": "Pava eléctrica", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 2000, "unidad": "W" }, "horasDia": 0.25 },
+    { "id": "horno-electrico", "nombre": "Horno eléctrico", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 1800, "unidad": "W" }, "horasDia": 0.5 },
+    { "id": "tostadora", "nombre": "Tostadora", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 800, "unidad": "W" }, "horasDia": 0.1 },
+    { "id": "cafetera", "nombre": "Cafetera", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 900, "unidad": "W" }, "horasDia": 0.3 },
+    { "id": "licuadora", "nombre": "Licuadora o procesadora", "categoria": "Cocina", "tipo": "motor", "potencia": { "valor": 500, "unidad": "W", "fp": 0.8 }, "horasDia": 0.1 },
+    { "id": "lavavajillas", "nombre": "Lavavajillas", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 1500, "unidad": "W" }, "horasDia": 1 },
+    { "id": "extractor", "nombre": "Extractor o campana", "categoria": "Cocina", "tipo": "motor", "potencia": { "valor": 150, "unidad": "W", "fp": 0.8 }, "horasDia": 1 },
+    { "id": "anafe", "nombre": "Anafe eléctrico (una hornalla)", "categoria": "Cocina", "tipo": "artefacto", "potencia": { "valor": 1500, "unidad": "W" }, "horasDia": 1 },
+
+    { "id": "lavarropas", "nombre": "Lavarropas automático (agua fría)", "categoria": "Lavadero", "tipo": "motor", "potencia": { "valor": 500, "unidad": "W", "fp": 0.8 }, "horasDia": 1 },
+    { "id": "lavarropas-caliente", "nombre": "Lavarropas automático (calentando agua)", "categoria": "Lavadero", "tipo": "artefacto", "potencia": { "valor": 2000, "unidad": "W" }, "horasDia": 1 },
+    { "id": "secarropas-calor", "nombre": "Secarropas por calor", "categoria": "Lavadero", "tipo": "artefacto", "potencia": { "valor": 2000, "unidad": "W" }, "horasDia": 0.5 },
+    { "id": "plancha", "nombre": "Plancha", "categoria": "Lavadero", "tipo": "artefacto", "potencia": { "valor": 1500, "unidad": "W" }, "horasDia": 0.3 },
+    { "id": "termotanque", "nombre": "Termotanque eléctrico", "categoria": "Lavadero", "tipo": "artefacto", "potencia": { "valor": 1500, "unidad": "W" }, "horasDia": 3 },
+    { "id": "bomba-agua", "nombre": "Bomba de agua 1/2 HP", "categoria": "Lavadero", "tipo": "motor", "potencia": { "valor": 600, "unidad": "W", "fp": 0.75 }, "horasDia": 0.5 },
+
+    { "id": "aire-2250", "nombre": "Aire acondicionado split 2250 frigorías", "categoria": "Climatización", "tipo": "motor", "potencia": { "valor": 900, "unidad": "W", "fp": 0.9 }, "horasDia": 5 },
+    { "id": "aire-3000", "nombre": "Aire acondicionado split 3000 frigorías", "categoria": "Climatización", "tipo": "motor", "potencia": { "valor": 1350, "unidad": "W", "fp": 0.9 }, "horasDia": 5 },
+    { "id": "aire-4500", "nombre": "Aire acondicionado split 4500 frigorías", "categoria": "Climatización", "tipo": "motor", "potencia": { "valor": 2000, "unidad": "W", "fp": 0.9 }, "horasDia": 5 },
+    { "id": "caloventor", "nombre": "Caloventor", "categoria": "Climatización", "tipo": "artefacto", "potencia": { "valor": 2000, "unidad": "W" }, "horasDia": 3 },
+    { "id": "estufa-cuarzo", "nombre": "Estufa de cuarzo (2 velas)", "categoria": "Climatización", "tipo": "artefacto", "potencia": { "valor": 1200, "unidad": "W" }, "horasDia": 3 },
+    { "id": "radiador-aceite", "nombre": "Radiador de aceite", "categoria": "Climatización", "tipo": "artefacto", "potencia": { "valor": 1500, "unidad": "W" }, "horasDia": 4 },
+    { "id": "ventilador-techo", "nombre": "Ventilador de techo", "categoria": "Climatización", "tipo": "ventilador", "potencia": { "valor": 75, "unidad": "W", "fp": 0.85 }, "horasDia": 6 },
+    { "id": "ventilador-pie", "nombre": "Ventilador de pie", "categoria": "Climatización", "tipo": "ventilador", "potencia": { "valor": 70, "unidad": "W", "fp": 0.85 }, "horasDia": 6 },
+
+    { "id": "tv", "nombre": "Televisor LED", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 100, "unidad": "W" }, "horasDia": 4 },
+    { "id": "pc", "nombre": "PC de escritorio con monitor", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 300, "unidad": "W" }, "horasDia": 6 },
+    { "id": "notebook", "nombre": "Notebook", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 65, "unidad": "W" }, "horasDia": 6 },
+    { "id": "router", "nombre": "Módem o router", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 10, "unidad": "W" }, "horasDia": 24 },
+    { "id": "consola", "nombre": "Consola de juegos", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 150, "unidad": "W" }, "horasDia": 2 },
+    { "id": "cargador", "nombre": "Cargador de celular", "categoria": "Electrónica", "tipo": "artefacto", "potencia": { "valor": 10, "unidad": "W" }, "horasDia": 3 },
+
+    { "id": "secador-pelo", "nombre": "Secador de pelo", "categoria": "Otros", "tipo": "artefacto", "potencia": { "valor": 1800, "unidad": "W" }, "horasDia": 0.15 },
+    { "id": "aspiradora", "nombre": "Aspiradora", "categoria": "Otros", "tipo": "motor", "potencia": { "valor": 1400, "unidad": "W", "fp": 0.85 }, "horasDia": 0.2 }
+  ]
+}

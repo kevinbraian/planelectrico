@@ -1,0 +1,168 @@
+[
+  {
+    "id": "punto-y-toma",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Punto y toma",
+    "descripcion": "Un interruptor con su luz y un tomacorriente en caja aparte, alimentado desde un circuito de tomas.",
+    "ranuras": [
+      { "id": "luz", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] },
+      { "id": "toma", "etiqueta": "Circuito de tomas", "tiposAdmitidos": ["TUG", "TUE"] }
+    ],
+    "parametros": [{ "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 6, "porDefecto": 1 }],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "luz", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "interruptor", "etiqueta": "Interruptor", "ranura": "luz", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "interruptor" }, "bornes": ["C", "1"] },
+      { "id": "toma", "etiqueta": "Tomacorriente", "ranura": "toma", "cantidad": 1, "elemento": { "clase": "boca", "uso": "tomacorriente" }, "bornes": ["L", "N", "PE"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@luz.L", "interruptor.C"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["interruptor.1", "luz.L"] },
+      { "id": "neutro-luz", "funcion": "neutro", "une": ["@luz.N", "luz.N"] },
+      { "id": "pe-luz", "funcion": "pe", "une": ["@luz.PE", "luz.PE"] },
+      { "id": "linea-toma", "funcion": "linea", "une": ["@toma.L", "toma.L"] },
+      { "id": "neutro-toma", "funcion": "neutro", "une": ["@toma.N", "toma.N"] },
+      { "id": "pe-toma", "funcion": "pe", "une": ["@toma.PE", "toma.PE"] }
+    ]
+  },
+  {
+    "id": "punto-y-toma-misma-caja",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Punto y toma en la misma caja",
+    "descripcion": "Interruptor y tomacorriente en una sola caja (boca mixta). El toma cuelga del circuito de iluminación, que pasa a ser de iluminación con tomas derivados.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [{ "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 6, "porDefecto": 1 }],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "caja", "etiqueta": "Caja con interruptor y toma", "ranura": "c", "cantidad": 1, "elemento": { "clase": "boca", "uso": "mixta" }, "bornes": ["L", "N", "PE"] },
+      { "id": "interruptor", "etiqueta": "Interruptor", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "interruptor" }, "bornes": ["C", "1"] }
+    ],
+    "redes": [
+      { "id": "linea", "funcion": "linea", "une": ["@c.L", "caja.L", "interruptor.C"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["interruptor.1", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "caja.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "caja.PE", "luz.PE"] }
+    ]
+  },
+  {
+    "id": "combinacion-2-puntos",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Combinación (2 puntos)",
+    "descripcion": "Una o más luces comandadas desde dos lugares: escalera, pasillo, dormitorio.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [{ "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 6, "porDefecto": 1 }],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "conmA", "etiqueta": "Conmutador A", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "conmutador" }, "bornes": ["C", "1", "2"] },
+      { "id": "conmB", "etiqueta": "Conmutador B", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "conmutador" }, "bornes": ["C", "1", "2"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@c.L", "conmA.C"] },
+      { "id": "viajero1", "funcion": "viajero", "une": ["conmA.1", "conmB.1"] },
+      { "id": "viajero2", "funcion": "viajero", "une": ["conmA.2", "conmB.2"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["conmB.C", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "luz.PE"] }
+    ]
+  },
+  {
+    "id": "combinacion-cruzamiento",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Combinación con cruzamiento (3 o más puntos)",
+    "descripcion": "Luces comandadas desde tres o más lugares: dos conmutadores en los extremos y un cruzamiento por cada punto intermedio.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [
+      { "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 6, "porDefecto": 1 },
+      { "id": "cruces", "etiqueta": "Cruzamientos (puntos intermedios)", "min": 1, "max": 4, "porDefecto": 1 }
+    ],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "conmA", "etiqueta": "Conmutador A", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "conmutador" }, "bornes": ["C", "1", "2"] },
+      {
+        "id": "cruce",
+        "etiqueta": "Cruzamiento",
+        "ranura": "c",
+        "cantidad": { "parametro": "cruces" },
+        "elemento": { "clase": "mando", "tipo": "cruzamiento" },
+        "bornes": ["1a", "2a", "1b", "2b"],
+        "serie": { "funcion": "viajero", "pares": [["1b", "1a"], ["2b", "2a"]] }
+      },
+      { "id": "conmB", "etiqueta": "Conmutador B", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "conmutador" }, "bornes": ["C", "1", "2"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@c.L", "conmA.C"] },
+      { "id": "viajero1a", "funcion": "viajero", "une": ["conmA.1", "cruce.1a"] },
+      { "id": "viajero2a", "funcion": "viajero", "une": ["conmA.2", "cruce.2a"] },
+      { "id": "viajero1b", "funcion": "viajero", "une": ["cruce.1b", "conmB.1"] },
+      { "id": "viajero2b", "funcion": "viajero", "une": ["cruce.2b", "conmB.2"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["conmB.C", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "luz.PE"] }
+    ]
+  },
+  {
+    "id": "fotocelula",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Fotocélula",
+    "descripcion": "Luces que se encienden solas al anochecer. La fotocélula necesita línea y neutro.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [{ "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 8, "porDefecto": 1 }],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "fotocelula", "etiqueta": "Fotocélula", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "fotocelula" }, "bornes": ["L", "N", "S"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@c.L", "fotocelula.L"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["fotocelula.S", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "fotocelula.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "luz.PE"] }
+    ]
+  },
+  {
+    "id": "sensor-movimiento",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Sensor de movimiento",
+    "descripcion": "Luces que se encienden al detectar presencia y se apagan solas. El sensor necesita línea y neutro.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [{ "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 8, "porDefecto": 1 }],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "sensor", "etiqueta": "Sensor de movimiento", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "sensor_movimiento" }, "bornes": ["L", "N", "S"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@c.L", "sensor.L"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["sensor.S", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "sensor.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "luz.PE"] }
+    ]
+  },
+  {
+    "id": "automatico-escalera",
+    "version": 1,
+    "origen": "sistema",
+    "nombre": "Automático de escalera con pulsadores",
+    "descripcion": "Las luces se encienden desde cualquier pulsador y un temporizador las apaga.",
+    "ranuras": [{ "id": "c", "etiqueta": "Circuito de iluminación", "tiposAdmitidos": ["IUG"] }],
+    "parametros": [
+      { "id": "luces", "etiqueta": "Puntos de luz", "min": 1, "max": 10, "porDefecto": 2 },
+      { "id": "pulsadores", "etiqueta": "Pulsadores", "min": 1, "max": 10, "porDefecto": 2 }
+    ],
+    "roles": [
+      { "id": "luz", "etiqueta": "Punto de luz", "ranura": "c", "cantidad": { "parametro": "luces" }, "elemento": { "clase": "boca", "uso": "iluminacion" }, "bornes": ["L", "N", "PE"] },
+      { "id": "automatico", "etiqueta": "Automático de escalera", "ranura": "c", "cantidad": 1, "elemento": { "clase": "mando", "tipo": "automatico_escalera" }, "bornes": ["L", "N", "P", "S"] },
+      { "id": "pulsador", "etiqueta": "Pulsador", "ranura": "c", "cantidad": { "parametro": "pulsadores" }, "elemento": { "clase": "mando", "tipo": "pulsador" }, "bornes": ["1", "2"] }
+    ],
+    "redes": [
+      { "id": "alimentacion", "funcion": "alimentacion_efecto", "une": ["@c.L", "automatico.L", "pulsador.1"] },
+      { "id": "pulsadores", "funcion": "mando", "une": ["pulsador.2", "automatico.P"] },
+      { "id": "retorno", "funcion": "retorno", "une": ["automatico.S", "luz.L"] },
+      { "id": "neutro", "funcion": "neutro", "une": ["@c.N", "automatico.N", "luz.N"] },
+      { "id": "pe", "funcion": "pe", "une": ["@c.PE", "luz.PE"] }
+    ]
+  }
+]

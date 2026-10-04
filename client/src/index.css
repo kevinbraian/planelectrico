@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* Tokens del tema. Todo color, radio y sombra de la interfaz sale de acá. */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-fondo: #eef1f5;
+  --color-panel: #ffffff;
+  --color-hundido: #f5f7fa;
+  --color-borde: #e1e5eb;
+  --color-tinta: #1f2733;
+  --color-tinta-suave: #667085;
+  --color-tinta-tenue: #98a2b3;
+
+  --color-acento: #2f7cf6;
+  --color-acento-fuerte: #1f63d6;
+  --color-acento-suave: #e8f1ff;
+  --color-marca: #6dbb7c;
+  --color-muro: #2b3245;
+
+  --color-error: #d92d20;
+  --color-error-suave: #fef3f2;
+  --color-aviso: #b54708;
+  --color-aviso-suave: #fffaeb;
+  --color-info: #175cd3;
+  --color-info-suave: #eff8ff;
+  --color-ok: #067647;
+  --color-ok-suave: #ecfdf3;
+
+  --radius-tarjeta: 0.875rem;
+  --shadow-tarjeta: 0 1px 2px rgb(16 24 40 / 0.05);
+  --shadow-flotante: 0 10px 30px rgb(16 24 40 / 0.14), 0 2px 6px rgb(16 24 40 / 0.06);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-acento);
+    outline-offset: 1px;
+  }
+
+  dialog::backdrop {
+    background: rgb(16 24 40 / 0.45);
+  }
+}
+
+@layer components {
+  /* Campos de formulario: input, select. */
+  .control {
+    height: 2rem;
+    width: 100%;
+    min-width: 0;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-borde);
+    background-color: var(--color-panel);
+    padding: 0 0.5rem;
+    color: var(--color-tinta);
+    transition: border-color 120ms, box-shadow 120ms;
+  }
+
+  .control:hover {
+    border-color: #c9d0da;
+  }
+
+  .control:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px rgb(47 124 246 / 0.18);
+  }
+
+  .control:disabled {
+    background-color: var(--color-hundido);
+    color: var(--color-tinta-tenue);
+  }
+
+  /* Resalta la fila o tarjeta recién creada, o aquella a la que lleva una advertencia. */
+  .resaltado {
+    outline: 2px solid var(--color-acento);
+    outline-offset: -1px;
+    background-color: var(--color-acento-suave);
+  }
+}
